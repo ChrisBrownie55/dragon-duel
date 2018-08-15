@@ -39,4 +39,26 @@ export default class CharacterSelectService {
     }
     return dragons;
   }
+
+  get champion() {
+    return selectedChampion;
+  }
+  set champion(id) {
+    if (selectedChampion === id) {
+      selectedChampion = undefined;
+    } else {
+      selectedChampion = id;
+    }
+  }
+
+  get dragon() {
+    return selectedDragon;
+  }
+  set dragon(id) {
+    if (selectedDragon === id) {
+      selectedDragon = undefined;
+    } else {
+      selectedDragon = id;
+    }
+  }
 }
