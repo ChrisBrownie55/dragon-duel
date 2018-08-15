@@ -89,6 +89,15 @@ export default class CharacterSelectController {
 
   selectDragon(id) {
     characterSelectService.dragon = id;
+    document
+      .querySelectorAll('.dragon.active')
+      .forEach(el => el.classList.remove('active'));
+
+    if (characterSelectService.dragon !== undefined) {
+      document
+        .querySelector(`.dragon[data-id='${id}']`)
+        .classList.add('active');
+    }
   }
 
   show() {
