@@ -1,10 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Signika');
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+
 html,
 body {
   margin: 0;
   width: 100%;
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #222;
+  color: #fafafa;
+}
+
+.header {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  animation: height-disappear 1s 0.5s ease forwards;
+}
+.header > .title {
+  font-family: 'Abril Fatface';
+  font-weight: 400;
+}
+.header::before {
+  content: '';
+  background-image: url(./src/assets/dnd-background.jpg);
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  filter: brightness(20%);
+  background-size: cover;
+}
+
+@keyframes height-disappear {
+  to {
+    height: 0;
+  }
 }
 
 .character {
@@ -12,18 +50,28 @@ body {
   display: flex;
   flex-direction: column;
   width: 20rem;
+  padding: 1rem;
 }
 .character > .name {
 }
 .character > .name > .race {
-  font-weight: 400;
 }
 .character > .name,
 .character > .hp {
   margin: 0;
 }
 .character > .portrait {
-  width: 20rem;
-  height: 20rem;
+  width: 18rem;
+  height: 18rem;
   object-fit: cover;
+  border-radius: 0.15rem;
+}
+
+.fw-400 {
+  font-weight: 400;
+}
+
+#character-select {
+  display: flex;
+  justify-content: space-evenly;
 }
