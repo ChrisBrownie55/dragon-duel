@@ -13,6 +13,7 @@ async function draw() {
     </header>
     <button
       disabled
+      id='play-button'
       class='play-button button green outline'
       onclick='app.controllers.characterSelect.startGame()'
     >Start Game</button>
@@ -74,6 +75,18 @@ async function draw() {
   `;
 }
 
+function updatePlayButton() {
+  const playButton = document.getElementById('play-button');
+  if (
+    characterSelectService.champion !== undefined &&
+    characterSelectService.dragon !== undefined
+  ) {
+    playButton.disabled = false;
+  } else {
+    playButton.disabled = true;
+  }
+}
+
 export default class CharacterSelectController {
   constructor() {
     this.show();
@@ -90,6 +103,7 @@ export default class CharacterSelectController {
         .querySelector(`.champion[data-id='${id}']`)
         .classList.add('active');
     }
+    updatePlayButton();
   }
 
   selectDragon(id) {
@@ -103,6 +117,7 @@ export default class CharacterSelectController {
         .querySelector(`.dragon[data-id='${id}']`)
         .classList.add('active');
     }
+    updatePlayButton();
   }
 
   startGame() {

@@ -13,10 +13,10 @@ export default class BattleService {
   newGame(championID, dragonID) {
     return battleAPI
       .post('/', {
-        championId: championID,
-        dragonId: dragonID
+        championId: championID.toString(),
+        dragonId: dragonID.toString()
       })
-      .then(res => new Game(res.data))
+      .then(res => new Game(res.data.game))
       .catch(error => console.error(error));
   }
 
