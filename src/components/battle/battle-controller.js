@@ -1,12 +1,15 @@
-import Game from '../../models/Game.js';
 import BattleService from './battle-service.js';
 
 const battleService = new BattleService();
 
-function draw() {}
+async function draw() {}
 
 export default class BattleController {
-  constructor(championID, dragonID) {}
+  constructor(championID, dragonID) {
+    draw(battleService.newGame(championID, dragonID));
+  }
 
-  attack(attackName) {}
+  attack(attackName) {
+    draw(battleService.attack(attackName));
+  }
 }

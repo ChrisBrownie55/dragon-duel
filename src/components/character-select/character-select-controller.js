@@ -1,5 +1,16 @@
 import CharacterSelectService from './character-select-service.js';
 
-function draw() {}
+const characterSelectService = new CharacterSelectService();
 
-export default class CharacterSelectController {}
+const app = document.getElementById('app');
+async function draw() {}
+
+export default class CharacterSelectController {
+  constructor() {
+    this.show();
+  }
+
+  show() {
+    draw();
+  }
+}
