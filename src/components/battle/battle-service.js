@@ -10,13 +10,15 @@ let currentBattle;
 export default class BattleService {
   constructor() {}
 
-  newGame(championId, dragonId) {
+  newGame(championID, dragonID) {
     return battleAPI
       .post('/', {
-        championId,
-        dragonId
+        championId: championID,
+        dragonId: dragonID
       })
       .then(res => new Game(res.data))
       .catch(error => console.error(error));
   }
+
+  deleteGame(gameID) {}
 }

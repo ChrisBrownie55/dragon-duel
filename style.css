@@ -49,22 +49,35 @@ body {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  width: 20rem;
+  align-items: center;
+  width: 12rem;
   padding: 1rem;
+  border-radius: 0.2rem;
+  background-color: #444;
+  margin: 0.75rem;
+  border: solid 1px #666;
+  transition: background-color 0.2s;
 }
-.character > .name {
-}
-.character > .name > .race {
+.character.active {
+  background-color: hsl(121, 12%, 32%);
 }
 .character > .name,
 .character > .hp {
   margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  user-select: none;
 }
 .character > .portrait {
-  width: 18rem;
+  width: 12rem;
   height: 18rem;
   object-fit: cover;
-  border-radius: 0.15rem;
+  border-radius: 0.25rem;
+  margin-top: 0.5rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  pointer-events: none;
+  user-select: none;
 }
 
 .fw-400 {
@@ -73,5 +86,53 @@ body {
 
 #character-select {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  width: 100%;
+}
+
+.characters {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.characters > .title {
+  text-align: center;
+  width: 100%;
+}
+
+.button {
+  font-size: 1rem;
+  background: none;
+  color: #fafafa;
+  border: none;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.15rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button.green.outline {
+  border: solid 1px rgb(6, 214, 6);
+  color: rgb(6, 214, 6);
+}
+.button.green.outline:hover {
+  color: #fafafa;
+  background-color: rgb(6, 214, 6);
+}
+
+.button.outline:disabled {
+  opacity: 0.5 !important;
+  border-color: #aaa !important;
+  color: #aaa !important;
+  background-color: transparent !important;
+  cursor: not-allowed;
+}
+
+.play-button {
+  position: absolute;
+  top: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
 }

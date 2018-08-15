@@ -8,12 +8,17 @@ async function draw() {
   const dragons = await characterSelectService.getDragons();
 
   app.innerHTML = `
+    <header class='header'>
+      <h1 class='title'>Dragon Duel</h1>
+    </header>
+    <button
+      disabled
+      class='play-button button green outline'
+      onclick='app.controllers.characterSelect.startGame()'
+    >Start Game</button>
     <main id='character-select'>
-      <header class='header'>
-        <h1 class='title'>Dragon Duel</h1>
-      </header>
       <section class='champions characters'>
-        <h2>Choose your Champion</h2>
+        <h2 class='title'>Choose your Champion</h2>
         ${champions
           .map(
             champion => `
@@ -42,7 +47,7 @@ async function draw() {
           .join('')}
       </section>
       <section class='dragons characters'>
-        <h2>Choose your Opponent</h2>
+        <h2 class='title'>Choose your Opponent</h2>
         ${dragons
           .map(
             dragon => `
@@ -57,7 +62,7 @@ async function draw() {
               <span class='fw-400'>${dragon.maxHP}</span>
             </h3>
             <img
-              class='portait'
+              class='portrait'
               src='${dragon.imgUrl}'
               alt='picture of ${dragon.name}'
             />
@@ -98,6 +103,14 @@ export default class CharacterSelectController {
         .querySelector(`.dragon[data-id='${id}']`)
         .classList.add('active');
     }
+  }
+
+  startGame() {
+    window.app.createBattle(
+      characterSelectService.champion,
+      characterSelectService.dragon
+    );
+    characterSelectService.champion = characterSelectService.dragon = undefined;
   }
 
   show() {
