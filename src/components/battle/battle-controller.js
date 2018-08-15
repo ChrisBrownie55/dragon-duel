@@ -2,7 +2,10 @@ import BattleService from './battle-service.js';
 
 const battleService = new BattleService();
 
-async function draw() {}
+const app = document.getElementById('app');
+async function draw(gamePromise) {
+  const game = await gamePromise;
+}
 
 export default class BattleController {
   constructor(championID, dragonID) {
