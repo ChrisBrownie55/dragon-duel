@@ -14,7 +14,7 @@ async function draw(gamePromise) {
           class='button red attack-button'
           onclick='app.controllers.battle.attack("${attackName}")'
         >
-          ${attackName.split('-').join(' ')}
+          ${attackName.replace(/([a-z])-?([A-Z])/g, '$1 $2')}
         </button>`
       )
       .join('')}
