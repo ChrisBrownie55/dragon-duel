@@ -1,13 +1,8 @@
 import Dragon from '../../models/Dragon.js';
 import Champion from '../../models/Champion.js';
 
-const championsAPI = axios.create({
-  baseURL: 'https://dragon-duel.herokuapp.com/api/champions',
-  timeout: 3000
-});
-
-const dragonsAPI = axios.create({
-  baseURL: 'https://dragon-duel.herokuapp.com/api/dragons',
+const charactersAPI = axios.create({
+  baseURL: 'https://dragon-duel.herokuapp.com/api',
   timeout: 3000
 });
 
@@ -21,8 +16,8 @@ export default class CharacterSelectService {
   async getChampions() {
     if (!champions.length) {
       champions.push(
-        ...(await championsAPI
-          .get('/')
+        ...(await charactersAPI
+          .get('/champions')
           .then(res => res.data.map(data => new Champion(data))))
       );
     }
@@ -32,8 +27,8 @@ export default class CharacterSelectService {
   async getDragons() {
     if (!dragons.length) {
       dragons.push(
-        ...(await dragonsAPI
-          .get('/')
+        ...(await charactersAPI
+          .get('/dragons')
           .then(res => res.data.map(data => new Dragon(data))))
       );
     }
