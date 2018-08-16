@@ -114,6 +114,9 @@ body {
   cursor: pointer;
   transition: all 0.2s;
 }
+.button:not(.outline):hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
 
 .button.green.outline {
   border: solid 1px rgb(6, 214, 6);
@@ -124,12 +127,20 @@ body {
   background-color: rgb(6, 214, 6);
 }
 
-.button.outline:disabled {
+.button.red {
+  background-color: #dc3545;
+  color: #fafafa;
+}
+
+.button:disabled {
   opacity: 0.5 !important;
-  border-color: #aaa !important;
   color: #aaa !important;
   background-color: transparent !important;
   cursor: not-allowed;
+  box-shadow: 0;
+}
+.button.outline:disabled {
+  border-color: #aaa !important;
 }
 
 .play-button {
@@ -137,4 +148,54 @@ body {
   top: 2.5rem;
   left: 50%;
   transform: translateX(-50%);
+}
+@media (max-width: 800px) {
+  .play-button {
+    top: 0.15rem;
+  }
+}
+
+.fight {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.character.fight-character {
+  width: 18rem;
+  cursor: unset;
+}
+
+.attack-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 1rem auto 0;
+  flex-wrap: wrap;
+}
+.attack-button {
+  margin: 0.25rem 1rem;
+  min-width: 10rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  text-transform: capitalize;
+}
+
+#game > .title {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+#player-health::after,
+#enemy-health::after {
+  content: '-' attr(data-subtract);
+  color: #dc3545;
+  animation: hide 0.5s 1s ease forwards;
+}
+
+@keyframes hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

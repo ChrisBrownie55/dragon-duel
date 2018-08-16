@@ -6,6 +6,7 @@ const battleAPI = axios.create({
 });
 
 let currentBattle;
+let game;
 
 export default class BattleService {
   constructor() {}
@@ -16,9 +17,23 @@ export default class BattleService {
         championId: championID.toString(),
         dragonId: dragonID.toString()
       })
-      .then(res => new Game(res.data.game))
+      .then(res => {
+        game = new Game(res.data.game);
+        return game;
+      })
       .catch(error => console.error(error));
   }
 
-  deleteGame(gameID) {}
+  deleteGame() {
+    battleAPI.delete(`/${game.id}`);
+  }
+
+  attack(attackName) {
+    if (!game.champion.attacks[attackName]) return;
+    return battleAPI
+      .put(`/${game.id}`, {
+        attack: attackName
+      })
+      .then(res => new Game(res.data));
+  }
 }
