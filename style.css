@@ -170,7 +170,7 @@ body {
 
 .fight {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .character.fight-character {
@@ -186,7 +186,7 @@ body {
 }
 .attack-button {
   margin: 0.25rem 1rem;
-  min-width: 10rem;
+  min-width: 9.9rem;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   text-transform: capitalize;
