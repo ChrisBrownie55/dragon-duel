@@ -98,6 +98,10 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 1rem;
+  max-width: 32rem;
+}
+.characters:not(:last-child) {
+  margin-right: 4rem;
 }
 .characters > .title {
   text-align: center;
@@ -114,21 +118,30 @@ body {
   cursor: pointer;
   transition: all 0.2s;
 }
-.button:not(.outline):hover {
+.button.dark-text {
+  color: #222;
+}
+.button:not(.outline):not(:disabled):hover {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .button.green.outline {
   border: solid 1px rgb(6, 214, 6);
-  color: hsl(120, 95%, 32%);
 }
 .button.green.outline:hover {
-  color: #fafafa;
   background-color: rgb(6, 214, 6);
 }
 
 .button.red {
   background-color: #dc3545;
+  color: #fafafa;
+}
+
+.button.blue.outline {
+  border: solid 1px rgb(2, 85, 240);
+}
+.button.blue.outline:hover {
+  background-color: rgb(2, 85, 240);
   color: #fafafa;
 }
 
@@ -161,7 +174,7 @@ body {
 }
 
 .character.fight-character {
-  width: 18rem;
+  padding: 2rem;
   cursor: unset;
 }
 
@@ -184,11 +197,19 @@ body {
   margin-top: 1.5rem;
 }
 
-#player-health::after,
-#enemy-health::after {
+#player-health,
+#enemy-health {
+  position: relative;
+}
+
+#player-health:not([data-subtract=''])::after,
+#enemy-health:not([data-subtract=''])::after {
   content: '-' attr(data-subtract);
   color: #dc3545;
   animation: hide 0.5s 1s ease forwards;
+  position: absolute;
+  left: 0;
+  transform: translateX(calc(-100% - 0.25rem));
 }
 
 @keyframes hide {
@@ -198,4 +219,16 @@ body {
   to {
     opacity: 0;
   }
+}
+
+#modal {
+  width: 20rem;
+}
+#modal > h2 {
+  margin-bottom: 1rem;
+}
+#modal > * {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
 }
